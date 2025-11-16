@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><title>IBAN et BIC générés</title></head>
+<body>
+<h2>IBAN/BIC générés pour <span th:text="${persona.firstName} + ' ' + ${persona.lastName}"></span></h2>
+<p>IBAN : <span th:text="${persona.iban}"></span></p>
+<p>BIC : <span th:text="${persona.bic}"></span></p>
+<a href="/">Retour à la liste</a>
+</body>
+</html>

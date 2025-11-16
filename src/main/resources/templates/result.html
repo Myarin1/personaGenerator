@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Résultat identité générée</title>
+</head>
+<body>
+<h2>Identité générée</h2>
+<p>Prénom : <span th:text="${lastPersona.firstName}"></span></p>
+<p>Nom : <span th:text="${lastPersona.lastName}"></span></p>
+<p>Date de naissance : <span th:text="${lastPersona.birthDate}"></span></p>
+<a href="/" >Retour</a>
+</body>
+</html>

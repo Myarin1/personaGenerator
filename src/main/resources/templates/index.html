@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Générateur de Persona</title>
+</head>
+<body>
+<h1>Générer un persona testeur</h1>
+<form th:action="@{/generate}" th:object="${personaForm}" method="post">
+    <label>Genre :</label>
+    <select th:field="*{genre}">
+        <option value="Homme">Homme</option>
+        <option value="Femme">Femme</option>
+    </select>
+    <button type="submit">Générer</button>
+</form>
+
+</body>
+</html>

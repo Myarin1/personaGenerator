@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><title>Liste des Personas</title></head>
+<body>
+<h2>Liste des Personas</h2>
+<a href="/new-persona">Créer un nouveau persona</a>
+<table border="1">
+    <thead>
+    <tr><th>Prénom</th><th>Nom</th><th>Naissance</th><th>Banque</th><th>IBAN</th><th>BIC</th><th>Action</th></tr>
+    </thead>
+    <tbody>
+    <tr th:each="p : ${personas}">
+        <td th:text="${p.firstName}">Prénom</td>
+        <td th:text="${p.lastName}">Nom</td>
+        <td th:text="${p.birthDate}">Date</td>
+    <td th:text="${p.bank} ?: 'N/A'">Banque</td>
+    <td th:text="${p.iban} ?: 'N/A'">IBAN</td>
+    <td th:text="${p.bic} ?: 'N/A'">BIC</td>
+        <td><a th:href="@{'/generate-bank/' + ${p.id}}">Générer IBAN/BIC</a></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

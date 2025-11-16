@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><title>Créer Persona</title></head>
+<body>
+<h2>Créer Persona</h2>
+<form th:action="@{/create-persona}" th:object="${personaForm}" method="post">
+    <label>Genre :</label>
+    <select th:field="*{genre}">
+        <option th:each="g : ${genres}" th:value="${g}" th:text="${g}"></option>
+    </select>
+    <button type="submit">Créer</button>
+</form>
+<a href="/">Retour</a>
+</body>
+</html>

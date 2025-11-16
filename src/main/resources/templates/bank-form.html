@@ -1,0 +1,13 @@
+<form th:action="@{|/generate-bank/${persona.id}|}" th:object="${bankForm}" method="post">
+    <label>Banque :</label>
+    <select th:field="*{bank}">
+        <option th:each="b : ${banks}" th:value="${b}" th:text="${b}"></option>
+    </select>
+    <br/><br/>
+    <label>Agence :</label>
+    <select th:field="*{agency}">
+        <option th:each="a : ${agencies}" th:value="${a}" th:text="${a}"></option>
+    </select>
+    <br/><br/>
+    <button type="submit">Générer</button>
+</form>

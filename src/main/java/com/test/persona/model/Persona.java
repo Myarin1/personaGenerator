@@ -13,6 +13,9 @@ public class Persona {
     private String lastName;
     private LocalDate birthDate;
 
+    private String gender;  
+    private String photoUrl;
+
     private String bank;
     private String agency;
     private String iban;

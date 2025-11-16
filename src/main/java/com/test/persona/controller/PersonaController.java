@@ -5,6 +5,7 @@ import com.test.persona.form.PersonaForm;
 import com.test.persona.model.Persona;
 import com.test.persona.service.BankService;
 import com.test.persona.service.IdentityService;
+import com.test.persona.service.IdentityPhotoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,6 +23,9 @@ public class PersonaController {
 
     @Autowired
     private BankService bankService;
+
+    @Autowired
+    private IdentityPhotoService identityPhotoService;
 
     @ModelAttribute("personas")
     public List<Persona> personas() {
@@ -62,6 +66,18 @@ public class PersonaController {
         model.addAttribute("banks", List.of("BNP", "SG", "CA"));
         model.addAttribute("agencies", List.of("00550", "12345", "67890"));
         return "bank-form";
+    }
+
+    @GetMapping("/generate-photo/{id}")
+    public String generatePhotoForPersona(@PathVariable String id,
+                                          @ModelAttribute("personas") List<Persona> personas) {
+        Persona p = personas.stream().filter(per -> per.getId().equals(id)).findFirst().orElse(null);
+        if (p == null) {
+            return "redirect:/";
+        }
+        String url = identityPhotoService.generateIdentityPhotoUrl(p.getGender(), p.getBirthDate());
+        p.setPhotoUrl(url);
+        return "redirect:/";
     }
 
     @PostMapping("/generate-bank/{id}")

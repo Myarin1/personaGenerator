@@ -6,17 +6,25 @@
 <a href="/new-persona">Créer un nouveau persona</a>
 <table border="1">
     <thead>
-    <tr><th>Prénom</th><th>Nom</th><th>Naissance</th><th>Banque</th><th>IBAN</th><th>BIC</th><th>Action</th></tr>
+    <tr><th>Prénom</th><th>Nom</th><th>Naissance</th><th>Photo</th><th>Banque</th><th>IBAN</th><th>BIC</th><th>Action</th></tr>
     </thead>
     <tbody>
     <tr th:each="p : ${personas}">
         <td th:text="${p.firstName}">Prénom</td>
         <td th:text="${p.lastName}">Nom</td>
         <td th:text="${p.birthDate}">Date</td>
-    <td th:text="${p.bank} ?: 'N/A'">Banque</td>
+        <td>
+            <img th:if="${p.photoUrl != null}" th:src="${p.photoUrl}" alt="Photo" width="64" height="64"/>
+            <span th:if="${p.photoUrl == null}">N/A</span>
+        </td>
+        <td th:text="${p.bank} ?: 'N/A'">Banque</td>
     <td th:text="${p.iban} ?: 'N/A'">IBAN</td>
     <td th:text="${p.bic} ?: 'N/A'">BIC</td>
-        <td><a th:href="@{'/generate-bank/' + ${p.id}}">Générer IBAN/BIC</a></td>
+        <td>
+            <a th:href="@{'/generate-bank/' + ${p.id}}">Générer IBAN/BIC</a>
+            &nbsp;|&nbsp;
+            <a th:href="@{'/generate-photo/' + ${p.id}}">Générer photo</a>
+        </td>
     </tr>
     </tbody>
 </table>

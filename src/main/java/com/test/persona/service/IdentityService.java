@@ -5,7 +5,6 @@ import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
 import java.util.UUID;
 
 import com.test.persona.model.Persona;
@@ -41,6 +40,7 @@ public class IdentityService {
         p.setFirstName(firstName);
         p.setLastName(lastName);
         p.setBirthDate(birthDate);
+        p.setGender(gender); // conserver le genre saisi (Homme/Femme)
         return p;
     }
 }

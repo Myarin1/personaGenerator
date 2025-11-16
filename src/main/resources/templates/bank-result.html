@@ -1,10 +1,38 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head><title>IBAN et BIC générés</title></head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IBAN et BIC générés</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        h2 {
+            font-size: 1.75rem;
+            text-align: center;
+        }
+    </style>
+</head>
 <body>
-<h2>IBAN/BIC générés pour <span th:text="${persona.firstName} + ' ' + ${persona.lastName}"></span></h2>
-<p>IBAN : <span th:text="${persona.iban}"></span></p>
-<p>BIC : <span th:text="${persona.bic}"></span></p>
-<a href="/">Retour à la liste</a>
+    <div class="container">
+        <div class="success-icon">✅</div>
+        <h2>IBAN/BIC générés pour <span th:text="${persona.firstName} + ' ' + ${persona.lastName}"></span></h2>
+        
+        <div class="result-card">
+            <div class="result-label">IBAN</div>
+            <div class="result-value" th:text="${persona.iban}">FR76 XXXX XXXX XXXX XXXX XXXX XXX</div>
+        </div>
+        
+        <div class="result-card">
+            <div class="result-label">BIC</div>
+            <div class="result-value" th:text="${persona.bic}">BNPAFRPPXXX</div>
+        </div>
+        
+        <a href="/" class="btn">← Retour à la liste</a>
+    </div>
 </body>
 </html>

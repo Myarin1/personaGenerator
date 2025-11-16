@@ -1,15 +1,31 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head><title>Créer Persona</title></head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Créer Persona</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
 <body>
-<h2>Créer Persona</h2>
-<form th:action="@{/create-persona}" th:object="${personaForm}" method="post">
-    <label>Genre :</label>
-    <select th:field="*{genre}">
-        <option th:each="g : ${genres}" th:value="${g}" th:text="${g}"></option>
-    </select>
-    <button type="submit">Créer</button>
-</form>
-<a href="/">Retour</a>
+    <div class="container">
+        <h2>✨ Créer un Persona</h2>
+        <form th:action="@{/create-persona}" th:object="${personaForm}" method="post">
+            <div class="form-group">
+                <label for="genre">Genre :</label>
+                <select id="genre" th:field="*{genre}">
+                    <option th:each="g : ${genres}" th:value="${g}" th:text="${g}"></option>
+                </select>
+            </div>
+            <button type="submit">Créer le persona</button>
+        </form>
+        <a href="/" class="back-link">← Retour à la liste</a>
+    </div>
 </body>
 </html>

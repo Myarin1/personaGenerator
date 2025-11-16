@@ -1,32 +1,57 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head><title>Liste des Personas</title></head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste des Personas</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
 <body>
-<h2>Liste des Personas</h2>
-<a href="/new-persona">Créer un nouveau persona</a>
-<table border="1">
-    <thead>
-    <tr><th>Prénom</th><th>Nom</th><th>Naissance</th><th>Photo</th><th>Banque</th><th>IBAN</th><th>BIC</th><th>Action</th></tr>
-    </thead>
-    <tbody>
-    <tr th:each="p : ${personas}">
-        <td th:text="${p.firstName}">Prénom</td>
-        <td th:text="${p.lastName}">Nom</td>
-        <td th:text="${p.birthDate}">Date</td>
-        <td>
-            <img th:if="${p.photoUrl != null}" th:src="${p.photoUrl}" alt="Photo" width="64" height="64"/>
-            <span th:if="${p.photoUrl == null}">N/A</span>
-        </td>
-        <td th:text="${p.bank} ?: 'N/A'">Banque</td>
-    <td th:text="${p.iban} ?: 'N/A'">IBAN</td>
-    <td th:text="${p.bic} ?: 'N/A'">BIC</td>
-        <td>
-            <a th:href="@{'/generate-bank/' + ${p.id}}">Générer IBAN/BIC</a>
-            &nbsp;|&nbsp;
-            <a th:href="@{'/generate-photo/' + ${p.id}}">Générer photo</a>
-        </td>
-    </tr>
-    </tbody>
-</table>
+    <div class="container">
+        <div class="header-actions">
+            <h2>Liste des Personas</h2>
+            <a href="/new-persona" class="btn">+ Créer un nouveau persona</a>
+        </div>
+        
+        <table th:if="${!personas.isEmpty()}">
+            <thead>
+                <tr>
+                    <th>Prénom</th>
+                    <th>Nom</th>
+                    <th>Naissance</th>
+                    <th>Photo</th>
+                    <th>Banque</th>
+                    <th>IBAN</th>
+                    <th>BIC</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="p : ${personas}">
+                    <td th:text="${p.firstName}">Prénom</td>
+                    <td th:text="${p.lastName}">Nom</td>
+                    <td th:text="${p.birthDate}">Date</td>
+                    <td>
+                        <img th:if="${p.photoUrl != null}" th:src="${p.photoUrl}" alt="Photo" width="64" height="64"/>
+                        <span th:if="${p.photoUrl == null}" style="color: #cbd5e0;">N/A</span>
+                    </td>
+                    <td th:text="${p.bank} ?: 'N/A'">Banque</td>
+                    <td th:text="${p.iban} ?: 'N/A'">IBAN</td>
+                    <td th:text="${p.bic} ?: 'N/A'">BIC</td>
+                    <td>
+                        <div class="actions">
+                            <a th:href="@{'/generate-bank/' + ${p.id}}">💳 IBAN/BIC</a>
+                            <a th:href="@{'/generate-photo/' + ${p.id}}">📷 Photo</a>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <div class="empty-state" th:if="${personas.isEmpty()}">
+            <p style="font-size: 1.25rem; margin-bottom: 1rem;">Aucun persona créé</p>
+            <p>Commencez par créer votre premier persona !</p>
+        </div>
+    </div>
 </body>
 </html>

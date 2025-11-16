@@ -1,13 +1,39 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Résultat identité générée</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
 </head>
 <body>
-<h2>Identité générée</h2>
-<p>Prénom : <span th:text="${lastPersona.firstName}"></span></p>
-<p>Nom : <span th:text="${lastPersona.lastName}"></span></p>
-<p>Date de naissance : <span th:text="${lastPersona.birthDate}"></span></p>
-<a href="/" >Retour</a>
+    <div class="container">
+        <div class="success-icon">✨</div>
+        <h2>Identité générée</h2>
+        
+        <div class="info-card">
+            <div class="info-row">
+                <span class="info-label">Prénom :</span>
+                <span class="info-value" th:text="${lastPersona.firstName}">Jean</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Nom :</span>
+                <span class="info-value" th:text="${lastPersona.lastName}">Dupont</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Date de naissance :</span>
+                <span class="info-value" th:text="${lastPersona.birthDate}">1990-01-01</span>
+            </div>
+        </div>
+        
+        <a href="/" class="btn">← Retour à la liste</a>
+    </div>
 </body>
 </html>
